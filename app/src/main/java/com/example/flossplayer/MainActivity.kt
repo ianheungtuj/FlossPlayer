@@ -1,14 +1,17 @@
 package com.example.flossplayer
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity() {
 
     private val bookList = BookList()
     private var hasTwoContainers = false
+    private lateinit var customRecyclerAdapter: CustomRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,28 +33,25 @@ class MainActivity : AppCompatActivity() {
         bookList.add(Book("Book 10", "Author 10"))
 
         bookViewModel.setBook(bookList)
-        val fragment1 = BookListFragment()
+
+        val manager = supportFragmentManager
+        var fragment1 = BookListFragment()
 
         if (savedInstanceState == null) {
             if (hasTwoContainers) {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.bookContainerView, fragment1)
-                    .commit()
-                supportFragmentManager.beginTransaction()
+                if (fragment1 != null) {
+                    manager.beginTransaction()
+                        .replace(R.id.fragmentContainerView, fragment1)
+                        .commit()
+                }
+                manager.beginTransaction()
                     .replace(R.id.bookPlayerView, BookPlayerFragment())
                     .commit()
             } else {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.bookContainerView, BookListFragment())
+                manager.beginTransaction()
+                    .replace(R.id.fragmentContainerView, BookListFragment())
                     .commit()
             }
-        }
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        if (hasTwoContainers) {
-            supportFragmentManager.popBackStack()
         }
     }
 }

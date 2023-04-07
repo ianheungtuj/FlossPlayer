@@ -7,13 +7,12 @@
     tools:context=".MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/bookContainerView"
-        android:name="com.example.flossplayer.BookFragment"
+        android:id="@+id/fragmentContainerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout="@layout/fragment_book" />
+        tools:layout="@layout/fragment_book_list" />
 </androidx.constraintlayout.widget.ConstraintLayout>

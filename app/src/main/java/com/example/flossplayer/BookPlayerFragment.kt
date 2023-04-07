@@ -11,10 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 class BookPlayerFragment : Fragment() {
 
     private lateinit var bookViewModel: BookViewModel
-    private lateinit var bookfragment: BookFragment
+    //private lateinit var bookfragment: BookFragment
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        //bookfragment.setBook(Book("",""))
         return inflater.inflate(R.layout.fragment_book_player, container, false)
     }
 

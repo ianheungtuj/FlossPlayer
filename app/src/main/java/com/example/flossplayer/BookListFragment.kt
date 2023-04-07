@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.w3c.dom.Text
 
 class BookListFragment : Fragment() {
     private lateinit var bookViewModel: BookViewModel
@@ -41,24 +42,4 @@ class BookListFragment : Fragment() {
             }
         }
     }
-}
-
-class CustomRecyclerAdapter(private val bookList: BookList, private val callback:
-    (Book)->Unit): RecyclerView.Adapter<CustomRecyclerAdapter.MyViewHolder>(){
-
-    inner class MyViewHolder (val textView: TextView) : RecyclerView.ViewHolder(textView){
-        init {
-            textView.setOnClickListener { callback(bookList.get(adapterPosition))}
-        }
-    }
-
-    override fun onCreateViewHolder (parent: ViewGroup, viewType: Int) =
-        MyViewHolder(TextView(parent.context).apply {
-        })
-
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) =
-        holder.textView.setText(bookList.get(position).title + " " + bookList.get(position).author)
-
-
-    override fun getItemCount() = bookList.size()
 }
